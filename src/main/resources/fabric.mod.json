@@ -1,0 +1,41 @@
+{
+	"schemaVersion": 1,
+	"id": "mischievous-skull",
+	"version": "${version}",
+	"name": "mischievous-skull",
+	"description": "This is an example description! Tell everyone what your mod is about!",
+	"authors": [
+		"Me!"
+	],
+	"contact": {
+		"homepage": "https://fabricmc.net/",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "CC0-1.0",
+	"icon": "assets/mischievous-skull/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.cprodhomme.mischievousskull.Mischievousskull"
+		],
+		"client": [
+			"com.cprodhomme.mischievousskull.MischievousskullClient"
+		]
+	},
+	"mixins": [
+		"mischievous-skull.mixins.json",
+		{
+			"config": "mischievous-skull.client.mixins.json",
+			"environment": "client"
+		}
+	],
+	"depends": {
+		"fabricloader": ">=0.15.11",
+		"minecraft": "~1.20.6",
+		"java": ">=21",
+		"fabric-api": "*"
+	},
+	"suggests": {
+		"another-mod": "*"
+	}
+}
