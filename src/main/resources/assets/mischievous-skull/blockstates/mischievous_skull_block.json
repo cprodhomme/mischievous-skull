@@ -1,7 +1,23 @@
 {
   "variants": {
-    "": {
-      "model": "minecraft:block/skull"
+    "facing=east":   {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "y": 180,
+      "uvlock": false
+    },
+    "facing=south":  {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "y": 270,
+      "uvlock": false
+    },
+    "facing=west":   {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "uvlock": false
+    },
+    "facing=north":  {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "y": 90,
+      "uvlock": false
     }
   }
 }
