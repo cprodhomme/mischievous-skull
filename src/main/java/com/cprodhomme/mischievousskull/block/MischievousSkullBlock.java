@@ -1,10 +1,10 @@
 package com.cprodhomme.mischievousskull.block;
 
-import java.util.Random;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import org.jetbrains.annotations.Nullable;
-
-import com.cprodhomme.mischievousskull.Mischievousskull;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -19,6 +19,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.item.ItemStack;
+import net.minecraft.particle.ParticleTypes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
@@ -29,6 +30,7 @@ import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
@@ -48,7 +50,6 @@ public class MischievousSkullBlock extends Block {
                   .sounds(BlockSoundGroup.AMETHYST_BLOCK)
   );
 
-
   public MischievousSkullBlock(Settings settings) {
     super(settings);
     this.setDefaultState(this.stateManager.getDefaultState().with(FACING, Direction.NORTH));
@@ -66,10 +67,7 @@ public class MischievousSkullBlock extends Block {
   
   @Override
   public BlockState getPlacementState(ItemPlacementContext ctx) {
-    // Obtenir la direction du joueur et la mettre à l'opposé pour que la face front soit orientée vers le joueur
-
     Direction playerFacing = ctx.getHorizontalPlayerFacing().getOpposite();
-    Mischievousskull.LOGGER.info("playerFacing: "+ playerFacing);
     return this.getDefaultState().with(FACING, playerFacing);
   }
 
@@ -105,23 +103,21 @@ public class MischievousSkullBlock extends Block {
 
   // Méthode pour appliquer un effet aléatoire au joueur
   private void applyRandomEffect(PlayerEntity player) {
-    int randomEffectIndex = getRandomIntegerEffect();
+    // Création de la liste des effets
+    List<RegistryEntry<StatusEffect>> effects = getRandomEffects();
 
-    // Créer une nouvelle instance d'effet aléatoire
-    RegistryEntry<StatusEffect> randomEffect = getRandomEffect(randomEffectIndex);
+    // Boucler sur la liste randomisée pour trouver un effet que le joueur n'a pas
+    for (RegistryEntry<StatusEffect> effect : effects) {
+      if (!player.hasStatusEffect(effect)) {
+        // Calculer le niveau de l'effet (0 ou 1)
+        int amplifier = calculLevelEffect(player, effect);
 
-    // Appliquer l'effet au joueur
-    Integer amplifier = calculLevelEffect(player, randomEffect);
-
-    Integer infiniteDuration = -1;
-    StatusEffectInstance statusEffectInstance = new StatusEffectInstance(randomEffect, infiniteDuration, amplifier);
-    player.addStatusEffect(statusEffectInstance);
-  }
-
-  private Integer getRandomIntegerEffect() {
-    Random random = new Random();
-
-    return random.nextInt(9) + 1;
+        // Appliquer l'effet avec une durée infinie
+        StatusEffectInstance effectInstance = new StatusEffectInstance(effect, StatusEffectInstance.INFINITE, amplifier);
+        player.addStatusEffect(effectInstance);
+        return; // Sortir de la méthode une fois que l'effet est appliqué
+      }
+    }
   }
 
   // assigne effet niveau 1 (amplifier 0) par défaut
@@ -130,34 +126,28 @@ public class MischievousSkullBlock extends Block {
     Integer level = 0;
     Boolean hasStatus = player.hasStatusEffect(effect);
     if (hasStatus) {
-      level += 1;
+      level = 1;
     }
     return level;
   }
 
   // Méthode pour obtenir un effet aléatoire en fonction de l'index
-  private RegistryEntry<StatusEffect> getRandomEffect(int index) {
-    switch (index) {
-      case 1:
-        return StatusEffects.STRENGTH;
-      case 2:
-        return StatusEffects.HASTE;
-      case 3:
-        return StatusEffects.JUMP_BOOST;
-      case 4:
-        return StatusEffects.SPEED;
-      case 5:
-        return StatusEffects.NIGHT_VISION;
-      case 6:
-        return StatusEffects.SATURATION;
-      case 7:
-        return StatusEffects.CONDUIT_POWER;
-      case 8:
-        return StatusEffects.OOZING;
-      case 9:
-        return StatusEffects.FIRE_RESISTANCE;
-      default:
-        return StatusEffects.STRENGTH;
-    }
+  private List<RegistryEntry<StatusEffect>> getRandomEffects() {
+    // Création de la liste des effets
+    List<RegistryEntry<StatusEffect>> effects = new ArrayList<>();
+    effects.add(StatusEffects.STRENGTH);
+    effects.add(StatusEffects.HASTE);
+    effects.add(StatusEffects.JUMP_BOOST);
+    effects.add(StatusEffects.SPEED);
+    effects.add(StatusEffects.NIGHT_VISION);
+    effects.add(StatusEffects.SATURATION);
+    effects.add(StatusEffects.CONDUIT_POWER);
+    effects.add(StatusEffects.OOZING);
+    effects.add(StatusEffects.FIRE_RESISTANCE);
+
+    // Mélanger la liste pour randomiser l'ordre
+    Collections.shuffle(effects);
+
+    return effects;
   }
 }
