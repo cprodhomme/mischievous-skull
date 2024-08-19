@@ -113,7 +113,8 @@ public class MischievousSkullBlock extends Block {
     // Appliquer l'effet au joueur
     Integer amplifier = calculLevelEffect(player, randomEffect);
 
-    StatusEffectInstance statusEffectInstance = new StatusEffectInstance(randomEffect, Integer.MAX_VALUE, amplifier);
+    Integer infiniteDuration = -1;
+    StatusEffectInstance statusEffectInstance = new StatusEffectInstance(randomEffect, infiniteDuration, amplifier);
     player.addStatusEffect(statusEffectInstance);
   }
 
