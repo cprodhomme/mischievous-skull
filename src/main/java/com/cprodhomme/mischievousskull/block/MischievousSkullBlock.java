@@ -150,4 +150,19 @@ public class MischievousSkullBlock extends Block {
 
     return effects;
   }
+
+  @Override
+  public void randomDisplayTick(BlockState state, World world, BlockPos pos, Random random) {
+    super.randomDisplayTick(state, world, pos, random);
+
+    if (world.isClient()) {
+      // Génération aléatoire des coordonnées autour du bloc
+      double x = (double)pos.getX() + random.nextDouble();
+      double y = (double)pos.getY() + random.nextDouble();
+      double z = (double)pos.getZ() + random.nextDouble();
+
+      // Ajout d'une particule (par exemple des particules de flamme)
+      world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
+    }
+  }
 }
