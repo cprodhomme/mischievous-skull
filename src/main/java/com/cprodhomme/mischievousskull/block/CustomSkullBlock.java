@@ -33,6 +33,11 @@ public class CustomSkullBlock extends Block {
   }
 
   @Override
+  protected VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
+    return VoxelShapes.empty();
+  }
+
+  @Override
 	public BlockState getPlacementState(ItemPlacementContext ctx) {
 		return super.getPlacementState(ctx).with(ROTATION, Integer.valueOf(RotationPropertyHelper.fromYaw(ctx.getPlayerYaw())));
 	}
@@ -52,9 +57,4 @@ public class CustomSkullBlock extends Block {
 		super.appendProperties(builder);
 		builder.add(ROTATION);
 	}
-
-  @Override
-  protected VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
-    return VoxelShapes.empty();
-  }
 }
