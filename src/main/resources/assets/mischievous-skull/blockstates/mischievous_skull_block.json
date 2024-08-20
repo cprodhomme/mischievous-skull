@@ -1,22 +1,83 @@
 {
   "variants": {
-    "facing=east":   {
+    "rotation=0":   {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "y": 0,
+      "uvlock": false
+    },
+    "rotation=1":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_n22_5",
+      "y": 90,
+      "uvlock": false
+    },
+    "rotation=2":   {
+      "model": "mischievous-skull:block/mischievous_skull_block_45",
+      "y": 90,
+      "uvlock": false
+    },
+    "rotation=3":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_22_5",
+      "y": 90,
+      "uvlock": false
+    },
+    "rotation=4":   {
+      "model": "mischievous-skull:block/mischievous_skull_block",
+      "y": 90,
+      "uvlock": false
+    },
+    "rotation=5":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_n22_5",
+      "y": 180,
+      "uvlock": false
+    },
+    "rotation=6":   {
+      "model": "mischievous-skull:block/mischievous_skull_block_45",
+      "y": 180,
+      "uvlock": false
+    },
+    "rotation=7":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_22_5",
+      "y": 180,
+      "uvlock": false
+    },
+    "rotation=8":   {
       "model": "mischievous-skull:block/mischievous_skull_block",
       "y": 180,
       "uvlock": false
     },
-    "facing=south":  {
+    "rotation=9":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_n22_5",
+      "y": 270,
+      "uvlock": false
+    },
+    "rotation=10":   {
+      "model": "mischievous-skull:block/mischievous_skull_block_45",
+      "y": 270,
+      "uvlock": false
+    },
+    "rotation=11":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_22_5",
+      "y": 270,
+      "uvlock": false
+    },
+    "rotation=12":   {
       "model": "mischievous-skull:block/mischievous_skull_block",
       "y": 270,
       "uvlock": false
     },
-    "facing=west":   {
-      "model": "mischievous-skull:block/mischievous_skull_block",
+    "rotation=13":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_n22_5",
+      "y": 0,
       "uvlock": false
     },
-    "facing=north":  {
-      "model": "mischievous-skull:block/mischievous_skull_block",
-      "y": 90,
+    "rotation=14":   {
+      "model": "mischievous-skull:block/mischievous_skull_block_45",
+      "y": 0,
+      "uvlock": false
+    },
+    "rotation=15":  {
+      "model": "mischievous-skull:block/mischievous_skull_block_22_5",
+      "y": 0,
       "uvlock": false
     }
   }
