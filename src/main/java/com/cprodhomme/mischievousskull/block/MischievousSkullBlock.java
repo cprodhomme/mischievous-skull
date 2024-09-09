@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.enums.Instrument;
+import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -29,7 +29,7 @@ public class MischievousSkullBlock extends CustomSkullBlock {
   public static final String IDENTIFIER = "mischievous_skull_block";
   public static final MischievousSkullBlock MISCHIEVOUS_SKULL_BLOCK = new MischievousSkullBlock(
     Block.Settings.create()
-                  .instrument(Instrument.SKELETON)
+                  .instrument(NoteBlockInstrument.SKELETON)
                   .pistonBehavior(PistonBehavior.DESTROY)
                   .strength(5.0f)
                   .sounds(BlockSoundGroup.AMETHYST_BLOCK)
