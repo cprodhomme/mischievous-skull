@@ -18,7 +18,7 @@ public class ModBlocks {
 
   private static Block register(Block block, String name, boolean shouldRegisterItem) {
 		// Register the block and its item.
-		Identifier id = Identifier.of(Mischievousskull.MOD_ID, name);
+		Identifier id = Identifier.tryParse(Mischievousskull.MOD_ID, name);
 
 		// Sometimes, you may not want to register an item for the block.
 		// Eg: if it's a technical block like `minecraft:air` or `minecraft:end_gateway`
