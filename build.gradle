@@ -45,8 +45,9 @@ fabricApi {
 		createSourceSet = true
 		modId = "mischievous-skull-gametest"
 		enableGameTests = true
-		enableClientGameTests = true
-		// true → tâche acceptGameTestEula (requis pour la CI : -x acceptGameTestEula, job client)
+		// Pas de FabricClientGameTest / pas d'entrypoint fabric-client-gametest : laisser false pour
+		// éviter runClientGameTest qui ne termine pas en CI (client lancé sans tests à exécuter).
+		enableClientGameTests = false
 		eula = true
 	}
 }
