@@ -7,6 +7,8 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.registry.Registries;
 import net.minecraft.registry.Registry;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.Identifier;
 
 public class ModBlocks {
@@ -18,12 +20,13 @@ public class ModBlocks {
 
   private static Block register(Block block, String name, boolean shouldRegisterItem) {
 		// Register the block and its item.
-		Identifier id = Identifier.tryParse(Mischievousskull.MOD_ID, name);
+		Identifier id = Identifier.of(Mischievousskull.MOD_ID, name);
 
 		// Sometimes, you may not want to register an item for the block.
 		// Eg: if it's a technical block like `minecraft:air` or `minecraft:end_gateway`
 		if (shouldRegisterItem) {
-			BlockItem blockItem = new BlockItem(block, new Item.Settings());
+			RegistryKey<Item> itemKey = RegistryKey.of(RegistryKeys.ITEM, id);
+			BlockItem blockItem = new BlockItem(block, new Item.Settings().registryKey(itemKey));
 			Registry.register(Registries.ITEM, id, blockItem);
 		}
 

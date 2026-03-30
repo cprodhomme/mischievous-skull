@@ -5,8 +5,8 @@
 	"name": "Mischievous Skull (GameTest)",
 	"environment": "*",
 	"depends": {
-		"fabricloader": ">=0.16.5",
-		"minecraft": "~1.21.1",
+		"fabricloader": ">=0.18.5",
+		"minecraft": "~1.21.11",
 		"mischievous-skull": "*"
 	},
 	"entrypoints": {

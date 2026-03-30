@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cprodhomme.mischievousskull.block.ModBlocks;
 
-import net.fabricmc.fabric.api.gametest.v1.FabricGameTest;
+import net.fabricmc.fabric.api.gametest.v1.GameTest;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -13,7 +13,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.registry.entry.RegistryEntry;
-import net.minecraft.test.GameTest;
 import net.minecraft.test.TestContext;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.GameMode;
@@ -31,7 +30,7 @@ public class MischievousSkullGameTest {
 		StatusEffects.FIRE_RESISTANCE
 	);
 
-	@GameTest(templateName = FabricGameTest.EMPTY_STRUCTURE)
+	@GameTest(structure = "fabric-gametest-api-v1:empty")
 	public void breakingSkullInSurvivalAppliesRandomGoodEffect(TestContext context) {
 		BlockPos pos = new BlockPos(2, 1, 2);
 		context.setBlockState(pos, ModBlocks.MISCHIEVOUS_SKULL);

@@ -1,5 +1,7 @@
 package com.cprodhomme.mischievousskull.block;
 
+import com.cprodhomme.mischievousskull.Mischievousskull;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -17,7 +19,10 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
 import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.util.Identifier;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -29,6 +34,7 @@ public class MischievousSkullBlock extends CustomSkullBlock {
   public static final String IDENTIFIER = "mischievous_skull_block";
   public static final MischievousSkullBlock MISCHIEVOUS_SKULL_BLOCK = new MischievousSkullBlock(
     Block.Settings.create()
+                  .registryKey(RegistryKey.of(RegistryKeys.BLOCK, Identifier.of(Mischievousskull.MOD_ID, IDENTIFIER)))
                   .instrument(NoteBlockInstrument.SKELETON)
                   .pistonBehavior(PistonBehavior.DESTROY)
                   .strength(5.0f)
@@ -111,7 +117,7 @@ public class MischievousSkullBlock extends CustomSkullBlock {
       double z = (double)pos.getZ() + random.nextDouble();
 
       // Ajout d'une particule (par exemple des particules de flamme)
-      world.addParticle(ParticleTypes.SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
+      world.addParticleClient(ParticleTypes.SMOKE, x, y, z, 0.0D, 0.0D, 0.0D);
     }
   }
 }

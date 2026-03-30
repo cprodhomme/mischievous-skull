@@ -33,7 +33,7 @@ public class CustomSkullBlock extends Block {
   }
 
   @Override
-  protected VoxelShape getCullingShape(BlockState state, BlockView world, BlockPos pos) {
+  protected VoxelShape getCullingShape(BlockState state) {
     return VoxelShapes.empty();
   }
 
