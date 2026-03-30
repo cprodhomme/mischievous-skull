@@ -1,0 +1,17 @@
+{
+	"schemaVersion": 1,
+	"id": "mischievous-skull-gametest",
+	"version": "1.0.0",
+	"name": "Mischievous Skull (GameTest)",
+	"environment": "*",
+	"depends": {
+		"fabricloader": ">=0.16.5",
+		"minecraft": "~1.21.1",
+		"mischievous-skull": "*"
+	},
+	"entrypoints": {
+		"fabric-gametest": [
+			"com.cprodhomme.mischievousskull.gametest.MischievousSkullGameTest"
+		]
+	}
+}
