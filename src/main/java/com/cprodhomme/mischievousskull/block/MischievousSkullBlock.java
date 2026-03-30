@@ -1,10 +1,7 @@
 package com.cprodhomme.mischievousskull.block;
 
 import com.cprodhomme.mischievousskull.Mischievousskull;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import com.cprodhomme.mischievousskull.SkullEffects;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -15,7 +12,6 @@ import net.minecraft.block.enums.NoteBlockInstrument;
 import net.minecraft.block.piston.PistonBehavior;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.particle.ParticleTypes;
@@ -58,19 +54,13 @@ public class MischievousSkullBlock extends CustomSkullBlock {
 
   // Méthode pour appliquer un effet aléatoire au joueur
   private void applyRandomEffect(PlayerEntity player) {
-    // Création de la liste des effets
-    List<RegistryEntry<StatusEffect>> effects = getRandomEffects();
-
-    // Boucler sur la liste randomisée pour trouver un effet que le joueur n'a pas
-    for (RegistryEntry<StatusEffect> effect : effects) {
+    for (SkullEffects.Entry entry : SkullEffects.shuffledEntries()) {
+      RegistryEntry<StatusEffect> effect = entry.effect();
       if (!player.hasStatusEffect(effect)) {
-        // Calculer le niveau de l'effet (0 ou 1)
         int amplifier = calculLevelEffect(player, effect);
-
-        // Appliquer l'effet avec une durée infinie
-        StatusEffectInstance effectInstance = new StatusEffectInstance(effect, StatusEffectInstance.INFINITE, amplifier);
+        StatusEffectInstance effectInstance = new StatusEffectInstance(effect, entry.instanceDuration(), amplifier);
         player.addStatusEffect(effectInstance);
-        return; // Sortir de la méthode une fois que l'effet est appliqué
+        return;
       }
     }
   }
@@ -84,26 +74,6 @@ public class MischievousSkullBlock extends CustomSkullBlock {
       level = 1;
     }
     return level;
-  }
-
-  // Méthode pour obtenir un effet aléatoire en fonction de l'index
-  private List<RegistryEntry<StatusEffect>> getRandomEffects() {
-    // Création de la liste des effets
-    List<RegistryEntry<StatusEffect>> effects = new ArrayList<>();
-    effects.add(StatusEffects.STRENGTH);
-    effects.add(StatusEffects.HASTE);
-    effects.add(StatusEffects.JUMP_BOOST);
-    effects.add(StatusEffects.SPEED);
-    effects.add(StatusEffects.NIGHT_VISION);
-    effects.add(StatusEffects.SATURATION);
-    effects.add(StatusEffects.CONDUIT_POWER);
-    effects.add(StatusEffects.OOZING);
-    effects.add(StatusEffects.FIRE_RESISTANCE);
-
-    // Mélanger la liste pour randomiser l'ordre
-    Collections.shuffle(effects);
-
-    return effects;
   }
 
   @Override

@@ -17,6 +17,7 @@ public class Mischievousskull implements ModInitializer {
 
 	@Override
 	public void onInitialize() {
+		SkullEffects.registerReloadListener();
 		ModBlocks.initialize();
 		ModItems.initialize();
 	}

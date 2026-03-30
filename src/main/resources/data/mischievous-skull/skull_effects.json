@@ -1,0 +1,13 @@
+{
+  "effects": [
+    { "id": "minecraft:strength", "duration": 0 },
+    { "id": "minecraft:haste", "duration": 0 },
+    { "id": "minecraft:jump_boost", "duration": 0 },
+    { "id": "minecraft:speed", "duration": 0 },
+    { "id": "minecraft:night_vision", "duration": 0 },
+    { "id": "minecraft:saturation", "duration": 0 },
+    { "id": "minecraft:conduit_power", "duration": 0 },
+    { "id": "minecraft:oozing", "duration": 0 },
+    { "id": "minecraft:fire_resistance", "duration": 0 }
+  ]
+}
